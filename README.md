@@ -24,6 +24,9 @@ You can add `FETCH="true"` if you want to update the data.
 
 ## Configuration
 
-### Reps Activities
+All configuration is supplied through environment variables:
 
-
+| Environment Variable | Description | Required | Default |
+|---|---|---|---|
+| REPS_ACTIVITY_PATH | Path to the Reps Activities JSON file, see [reps-archive](https://github.com/mozilla/reps-archive) to see how to generate it (as long as the Portal is still up) | No | - |
+| REPS_USERNAME | Reps username to search for | No | - |

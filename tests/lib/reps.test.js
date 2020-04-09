@@ -74,7 +74,7 @@ const ACTIVITIES_STRING = JSON.stringify(ACTIVITIES);
 
 test.beforeEach((t) => {
   t.context.sandbox = sinon.createSandbox();
-  t.context.sandbox.stub(fs, 'readFile').resolves(ACTIVITIES_STRING);
+  t.context.sandbox.stub(fs.promises, 'readFile').resolves(ACTIVITIES_STRING);
 });
 
 test.afterEach.always((t) => {
@@ -88,7 +88,7 @@ test.serial('should not do anything if no path passed', async (t) => {
   });
 
   await reps.processActivities();
-  t.false(fs.readFile.called);
+  t.false(fs.promises.readFile.called);
 
   restore();
 });
@@ -101,7 +101,7 @@ test.serial('should not do anything if no username passed', async (t) => {
   });
 
   await reps.processActivities();
-  t.false(fs.readFile.called);
+  t.false(fs.promises.readFile.called);
 
   restore();
 });
@@ -174,7 +174,7 @@ test.serial('should return empty array if file could not be read', async (t) => 
     REPS_USERNAME: 'foo',
   });
 
-  fs.readFile.rejects(new Error('NOPE!'));
+  fs.promises.readFile.rejects(new Error('NOPE!'));
   const activities = await reps.processActivities('some_path.json');
   t.is(activities.length, 0);
 

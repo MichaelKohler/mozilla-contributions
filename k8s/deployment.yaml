@@ -51,5 +51,5 @@ spec:
             - name: CONNECT
               valueFrom:
                 secretKeyRef:
-                  name: mozilla-contributions
+                  name: mozilla-contributions-connect
                   key: connect

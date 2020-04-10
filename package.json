@@ -16,8 +16,8 @@
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",
-    "@michaelkohler/eslint-config-node": "^6.8.20",
-    "@michaelkohler/eslint-config-test": "^6.8.20",
+    "@michaelkohler/eslint-config-node": "^6.8.21",
+    "@michaelkohler/eslint-config-test": "^6.8.21",
     "ava": "^3.5.1",
     "eslint": "^6.8.0",
     "gh-pages": "^2.2.0",

@@ -4,7 +4,7 @@
   "license": "MPL",
   "author": "Michael Kohler <me@michaelkohler.info>",
   "scripts": {
-    "start": "DEBUG=mozilla-contributions:* CONNECT=mysql://admin:localdevelopment@localhost:3306/contributions node index.js",
+    "start": "DEBUG=mozilla-contributions:* node index.js",
     "stop": "docker-compose stop",
     "start:db": "docker-compose up -d",
     "eslint": "eslint .",

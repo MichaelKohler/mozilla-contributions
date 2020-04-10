@@ -16,7 +16,6 @@
   },
   "devDependencies": {
     "@ava/babel": "^1.0.1",
-    "@michaelkohler/eslint-config-base": "^6.8.20",
     "@michaelkohler/eslint-config-node": "^6.8.20",
     "@michaelkohler/eslint-config-test": "^6.8.20",
     "ava": "^3.5.1",

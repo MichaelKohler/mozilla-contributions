@@ -8,7 +8,7 @@ The following sources are supported:
 
 ## Setup
 
-First install [Node](http://nodejs.org/) and clone this repository.
+First install [Node](http://nodejs.org/) and [docker](https://www.docker.com/).
 
 ```
 npm ci
@@ -17,6 +17,8 @@ npm ci
 Now you can run the script:
 
 ```
+npm run start:db
+# Wait a while to make sure MariaDB is up
 npm start
 ```
 
@@ -28,5 +30,6 @@ All configuration is supplied through environment variables:
 
 | Environment Variable | Description | Required | Default |
 |---|---|---|---|
+| CONNECT | MySQL connection string | Yes | - |
 | REPS_ACTIVITY_PATH | Absolute path to the Reps Activities JSON file, see [reps-archive](https://github.com/mozilla/reps-archive) to see how to generate it (as long as the Portal is still up) | No | - |
 | REPS_USERNAME | Reps username to search for | No | - |

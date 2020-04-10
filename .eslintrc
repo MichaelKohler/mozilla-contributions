@@ -2,5 +2,9 @@
   "env": {
       "node": true
   },
-  "extends": "@michaelkohler/eslint-config-node"
+  "extends": "@michaelkohler/eslint-config-node",
+  "rules": {
+    "unicorn/no-hex-escape": 0,
+    "no-control-regex": 0
+  }
 }

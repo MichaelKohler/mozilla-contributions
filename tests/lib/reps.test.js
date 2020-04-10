@@ -6,6 +6,7 @@ import mockedEnv from 'mocked-env';
 import sinon from 'sinon';
 
 import reps from '../../lib/reps';
+import storageHandler from '../../lib/storage-handler';
 
 const ACTIVITIES = [
   {
@@ -74,7 +75,12 @@ const ACTIVITIES_STRING = JSON.stringify(ACTIVITIES);
 
 test.beforeEach((t) => {
   t.context.sandbox = sinon.createSandbox();
+  t.context.storageInstance = {
+    deleteBySource: t.context.sandbox.stub(),
+    saveContributions: t.context.sandbox.stub(),
+  };
   t.context.sandbox.stub(fs.promises, 'readFile').resolves(ACTIVITIES_STRING);
+  t.context.sandbox.stub(storageHandler, 'getInstance').returns(t.context.storageInstance);
 });
 
 test.afterEach.always((t) => {
@@ -127,7 +133,7 @@ test.serial('should format activities - attended event', async (t) => {
   });
 
   const activities = await reps.processActivities();
-  t.deepEqual(activities[0].date, new Date('2020-10-12'));
+  t.deepEqual(activities[0].createdAt, new Date('2020-10-12'));
   t.is(activities[0].type, 'Attended an Event');
   t.is(activities[0].description, 'CV Event: Some event!');
   t.is(activities[0].link, 'https://reps.mozilla.org/e/common-voice/');
@@ -143,7 +149,7 @@ test.serial('should format activities - wrote article - no event info', async (t
   });
 
   const activities = await reps.processActivities();
-  t.deepEqual(activities[1].date, new Date('2020-10-12'));
+  t.deepEqual(activities[1].createdAt, new Date('2020-10-12'));
   t.is(activities[1].type, 'Wrote an article');
   t.is(activities[1].description, 'I wrote something!!');
   t.is(activities[1].link, 'https://example.com/article');
@@ -159,10 +165,36 @@ test.serial('should format activities - post event metrics - no description', as
   });
 
   const activities = await reps.processActivities();
-  t.deepEqual(activities[2].date, new Date('2020-10-12'));
+  t.deepEqual(activities[2].createdAt, new Date('2020-10-12'));
   t.is(activities[2].type, 'Completed post event metrics');
   t.is(activities[2].description, 'CV Event');
   t.is(activities[2].link, 'https://reps.mozilla.org/e/common-voice/');
+
+  restore();
+});
+
+test.serial('should delete all Reps activities before saving', async (t) => {
+  const restore = mockedEnv({
+    FETCH: 'true',
+    REPS_ACTIVITY_PATH: 'some_file.json',
+    REPS_USERNAME: 'mkohler',
+  });
+
+  await reps.processActivities();
+  t.true(t.context.storageInstance.deleteBySource.calledWith('reps'));
+
+  restore();
+});
+
+test.serial('should save all Reps activities', async (t) => {
+  const restore = mockedEnv({
+    FETCH: 'true',
+    REPS_ACTIVITY_PATH: 'some_file.json',
+    REPS_USERNAME: 'mkohler',
+  });
+
+  const activities = await reps.processActivities();
+  t.true(t.context.storageInstance.saveContributions.calledWith(activities));
 
   restore();
 });

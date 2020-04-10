@@ -1,0 +1,38 @@
+body {
+  color: #171717;
+  background-color: #ebebeb;
+  font-family: "Raleway", sans-serif;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  line-height: 30px;
+  background-color: #fff;
+  margin-top: 10px;
+}
+
+thead {
+  background-color: #1f3352;
+  color: #ebebeb;
+}
+
+th {
+  min-height: 20px;
+  padding: 5px;
+  text-align: left;
+}
+
+tr {
+  border-bottom: 1px solid #c8c8c8;
+}
+
+td {
+  padding: 5px;
+  min-width: 10vw;
+}
+
+a {
+  color: #1f3352;
+  text-decoration: underline dotted;
+}

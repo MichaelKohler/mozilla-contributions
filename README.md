@@ -33,3 +33,10 @@ All configuration is supplied through environment variables:
 | CONNECT | MySQL connection string | Yes | - |
 | REPS_ACTIVITY_PATH | Absolute path to the Reps Activities JSON file, see [reps-archive](https://github.com/mozilla/reps-archive) to see how to generate it (as long as the Portal is still up) | No | - |
 | REPS_USERNAME | Reps username to search for | No | - |
+
+## Forking this project
+
+When forking this project, make sure to adjust the following:
+
+* GitHub workflows to whatever you need it to be to deploy
+* k8s/deployment.yml file to use the right docker image and config

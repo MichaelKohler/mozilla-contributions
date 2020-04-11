@@ -11,6 +11,7 @@ test.beforeEach((t) => {
   t.context.sandbox = sinon.createSandbox();
   t.context.mysqlConnection = {
     connect: t.context.sandbox.stub().callsFake((cb) => cb()),
+    on: t.context.sandbox.stub().callsFake((event, cb) => cb(new Error('OH NO!'))),
     query: t.context.sandbox.stub().callsFake((query, entryOrCB, cb) => typeof entryOrCB === 'function' ? entryOrCB() : cb()),
   };
   t.context.storageInstance = StorageHandler.getInstance();
@@ -44,6 +45,7 @@ test.serial('should connect and create tables', async (t) => {
   await t.context.storageInstance.connect();
   t.true(mysql.createConnection.calledWith(connectString));
   t.true(t.context.mysqlConnection.connect.calledOnce);
+  t.true(t.context.mysqlConnection.on.calledOnce);
   t.true(t.context.mysqlConnection.query.calledOnce);
 
   restore();

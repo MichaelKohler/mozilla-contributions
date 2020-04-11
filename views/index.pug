@@ -1,37 +1,39 @@
 doctype html
 html(lang='en')
- head
-   title Mozilla Contributions
-   link(rel="stylesheet", href="./styles.css", type="text/css")
-   link(href="https://fonts.googleapis.com/css2?family=Raleway&display=swap", rel="stylesheet")
- body
-   h1 Michael - Mozilla Contributions
-   h2 Data Sources
-   ul
-    li Reps Activity (static export - not updated in real time)
-    li TODO: GitHub commits on Mozilla related repos (through a filter, so might miss a few things)
-    li TODO: GitHub issues and comments (through a filter, so might miss a few things)
-    li TODO: Public Discourse posts
-    li TODO: Public Bugzilla activity (does not include many Reps related bugs)
-    li TODO: (maybe) GitHub PR reviews (through a filter, so might miss a few things)
-    li TODO: (maybe) Google Groups Mails to mailing lists
-    li TODO: (maybe) new Community Portal
-   table
-    thead
-      tr
-        th Date
-        th Type
-        th Description
-    tbody
-      each contribution in contributions
+  head
+    title Mozilla Contributions
+    link(rel="stylesheet", href="./styles.css", type="text/css")
+    link(href="https://fonts.googleapis.com/css2?family=Raleway&display=swap", rel="stylesheet")
+  body
+    h1 Michael - Mozilla Contributions
+    h2 Data Sources
+    p This report includes data sources which can be queried automatically. Of course there are many contributions which can't be tracked automatically, so they have been omitted here.
+    ul
+      li Reps Activity (static export - not updated in real time)
+      li TODO: GitHub commits on Mozilla related repos (through a filter, so might miss a few things)
+      li TODO: GitHub issues and comments (through a filter, so might miss a few things)
+      li TODO: Public Discourse posts
+      li TODO: Public Bugzilla activity (does not include many Reps related bugs)
+      li TODO: (maybe) GitHub PR reviews (through a filter, so might miss a few things)
+      li TODO: (maybe) Google Groups Mails to mailing lists
+      li TODO: (maybe) new Community Portal
+    ul
+    table
+      thead
         tr
-          td= contribution.createdAt.toDateString()
+          th Date
+          th Type
+          th Description
+      tbody
+        each contribution in contributions
+          tr
+            td= contribution.createdAt.toDateString()
 
-          if contribution.link
-            td
-              a(href=contribution.link)
-                span= contribution.type
-          else
-            td= contribution.type
+            if contribution.link
+              td
+                a(href=contribution.link)
+                  span= contribution.type
+            else
+              td= contribution.type
 
-          td= contribution.description
+            td= contribution.description

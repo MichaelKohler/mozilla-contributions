@@ -5,6 +5,7 @@
   "extends": "@michaelkohler/eslint-config-node",
   "rules": {
     "unicorn/no-hex-escape": 0,
-    "no-control-regex": 0
+    "no-control-regex": 0,
+    "no-magic-numbers": 0
   }
 }

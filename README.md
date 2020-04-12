@@ -5,6 +5,11 @@ This project captures contributions to Mozilla, depending on a config.
 The following sources are supported:
 
 * Mozilla Reps Activities
+* GitHub Commits
+
+## Restrictions
+
+* Maximum of 1000 commits search results per month
 
 ## Setup
 
@@ -31,8 +36,20 @@ All configuration is supplied through environment variables:
 | Environment Variable | Description | Required | Default |
 |---|---|---|---|
 | CONNECT | MySQL connection string | Yes | - |
+| GITHUB_USERNAME | The GitHub username to search for | Yes | - |
+| GITHUB_TOKEN | GitHub personal access token | Yes | - |
+| GITHUB_FILTER | Filter (Regex) to search for in organization/repo name | No | Uses all returned values |
+| GITHUB_STOP_DATE | Date in `YYYY-MM-DD format` which indicates the earliest possible contribution | No | 2010-01-01 |
 | REPS_ACTIVITY_PATH | Absolute path to the Reps Activities JSON file, see [reps-archive](https://github.com/mozilla/reps-archive) to see how to generate it (as long as the Portal is still up) | No | - |
 | REPS_USERNAME | Reps username to search for | No | - |
+
+### Example for GITHUB_FILTER
+
+For (contributions.michaelkohler.info)[https://contributions.michaelkohler.info] I'm using the following value:
+
+```
+GITHUB_FILTER="mozilla|common-voice|reps|remo|sc-scripts|webmaker|firefox|activate|surprisera|fxos|foxfooding|arewetenyet|asknot|community_dashboard_participation|appday"
+```
 
 ## Forking this project
 

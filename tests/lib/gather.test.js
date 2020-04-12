@@ -4,12 +4,14 @@ import cron from 'node-cron';
 import sinon from 'sinon';
 
 import gather from '../../lib/gather';
+import github from '../../lib/github';
 import reps from '../../lib/reps';
 
 test.beforeEach((t) => {
   t.context.sandbox = sinon.createSandbox();
   t.context.sandbox.stub(cron, 'schedule');
   t.context.sandbox.stub(reps, 'processActivities');
+  t.context.sandbox.stub(github, 'gather');
 });
 
 test.afterEach.always((t) => {
@@ -24,6 +26,19 @@ test.serial('FETCH - should register cronjob', async (t) => {
   await gather.start();
 
   t.true(cron.schedule.called);
+
+  restore();
+});
+
+test.serial('FETCH - should start gathering', async (t) => {
+  const restore = mockedEnv({
+    FETCH: 'true',
+  });
+
+  await gather.start();
+
+  t.true(reps.processActivities.called);
+  t.true(github.gather.called);
 
   restore();
 });

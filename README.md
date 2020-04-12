@@ -6,6 +6,8 @@ The following sources are supported:
 
 * Mozilla Reps Activities
 * GitHub Commits
+* GitHub Issues
+* GitHub Issue Comments
 
 ## Restrictions
 

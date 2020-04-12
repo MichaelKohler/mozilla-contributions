@@ -5,18 +5,32 @@ html(lang='en')
     link(rel="stylesheet", href="./styles.css", type="text/css")
     link(href="https://fonts.googleapis.com/css2?family=Raleway&display=swap", rel="stylesheet")
   body
-    h1 Michael - Mozilla Contributions
-    h2 Data Sources
-    p This report includes data sources which can be queried automatically. Of course there are many contributions which can't be tracked automatically, so they have been omitted here.
-    ul
-      li Reps Activity (static export - not updated in real time)
-      li GitHub commits on Mozilla related repos (through a filter, so might miss a few things)
-      li GitHub issues and comments (through a filter, so might miss a few things)
-      li TODO: Public Discourse posts
-      li TODO: Public Bugzilla activity (does not include many Reps related bugs)
-      li TODO: (maybe) Google Groups Mails to mailing lists
-      li TODO: (maybe) new Community Portal
-    ul
+    nav.vertical-container
+      h1 Michael - Mozilla Contributions
+      button(id="datasourcesButton") Data Sources
+    .datasources.hidden
+      p This report includes data sources which can be queried automatically. Of course there are many contributions which can't be tracked automatically, so they have been omitted here.
+      .vertical-container
+        .list
+          h3 Included
+          ul
+            li Reps Activity (static export - not updated in real time)
+            li GitHub commits (through a filter, so might miss a few things)
+            li GitHub issues created (through a filter, so might miss a few things)
+            li TODO: Public Discourse posts
+            li TODO: Public Bugzilla activity (does not include many Reps related bugs)
+            li TODO: (maybe) Google Groups Mails to mailing lists
+            li TODO: (maybe) new Community Portal
+        .list
+          h3 Not included
+          ul
+            li GitHub Comments - do not provide enough information to be useful
+            li eMails sent apart from mailing lists
+            li Chat messages
+            li Many Webmaker activities and contributions
+            li Ad-hoc meetings that did not get filed on the Reps Portal
+            li Reps Working Documents that never ended up on Discourse
+
     table
       thead
         tr
@@ -36,3 +50,5 @@ html(lang='en')
               td= contribution.type
 
             td= contribution.description
+
+    script(defer="true", src="./main.js")

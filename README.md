@@ -7,6 +7,7 @@ The following sources are supported:
 * Mozilla Reps Activities
 * GitHub Commits
 * GitHub Issues created
+* Discourse Posts
 
 ## Restrictions
 
@@ -37,6 +38,7 @@ All configuration is supplied through environment variables:
 | Environment Variable | Description | Required | Default |
 |---|---|---|---|
 | CONNECT | MySQL connection string | Yes | - |
+| DISCOURSE_USERNAME | Discourse Username | No | - |
 | GITHUB_DELAY_MS | Delay between GitHub search requests in milliseconds - you might hit the rate limiting! | No | 2000 |
 | GITHUB_USERNAME | The GitHub username to search for | Yes | - |
 | GITHUB_TOKEN | GitHub personal access token | Yes | - |

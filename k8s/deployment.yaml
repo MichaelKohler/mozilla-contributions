@@ -48,28 +48,28 @@ spec:
                 secretKeyRef:
                   name: mozilla-contributions-fetch
                   key: fetch
-            - name: GITHUB_TOKEN
-              valueFrom:
-                secretKeyRef:
-                  name: mozilla-contributions-github
-                  key: github
             - name: CONNECT
               valueFrom:
                 secretKeyRef:
                   name: mozilla-contributions-connect
                   key: connect
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: mozilla-contributions-github
+                  key: token
             - name: GITHUB_USERNAME
               valueFrom:
                 secretKeyRef:
-                  name: mozilla-contributions-github-username
+                  name: mozilla-contributions-github
                   key: username
             - name: GITHUB_FILTER
               valueFrom:
                 secretKeyRef:
-                  name: mozilla-contributions-github-filter
+                  name: mozilla-contributions-github
                   key: filter
             - name: GITHUB_STOP_DATE
               valueFrom:
                 secretKeyRef:
-                  name: mozilla-contributions-github-stopdate
+                  name: mozilla-contributions-github
                   key: stopdate

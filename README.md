@@ -11,7 +11,6 @@ The following sources are supported:
 ## Restrictions
 
 * Maximum of 1000 commits search results per month
-* Multiple comments on the issue on the same day will only show up as one entry
 
 ## Setup
 

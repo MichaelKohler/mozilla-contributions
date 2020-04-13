@@ -43,6 +43,11 @@ spec:
           ports:
             - containerPort: 3333
           env:
+            - name: FETCH
+              valueFrom:
+                secretKeyRef:
+                  name: mozilla-contributions-fetch
+                  key: fetch
             - name: GITHUB_TOKEN
               valueFrom:
                 secretKeyRef:

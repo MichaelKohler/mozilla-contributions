@@ -53,3 +53,18 @@ spec:
                 secretKeyRef:
                   name: mozilla-contributions-connect
                   key: connect
+            - name: GITHUB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mozilla-contributions-github-username
+                  key: username
+            - name: GITHUB_FILTER
+              valueFrom:
+                secretKeyRef:
+                  name: mozilla-contributions-github-filter
+                  key: filter
+            - name: GITHUB_STOP_DATE
+              valueFrom:
+                secretKeyRef:
+                  name: mozilla-contributions-github-stopdate
+                  key: stopdate

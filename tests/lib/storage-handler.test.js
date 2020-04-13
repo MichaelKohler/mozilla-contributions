@@ -80,3 +80,7 @@ test.serial('should not throw when getting contributions', (t) => {
 test.serial('should not throw when deleting contributions by source', (t) => {
   t.notThrows(() => t.context.storageInstance.deleteBySource('reps'));
 });
+
+test.serial('should not throw when getting latest by source', (t) => {
+  t.notThrows(() => t.context.storageInstance.getLatestBySource('reps'));
+});

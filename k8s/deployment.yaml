@@ -78,3 +78,13 @@ spec:
                 secretKeyRef:
                   name: mozilla-contributions-discourse
                   key: username
+            - name: WIKI_STOP_DATE
+              valueFrom:
+                secretKeyRef:
+                  name: mozilla-contributions-wiki
+                  key: stopdate
+            - name: WIKI_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mozilla-contributions-wiki
+                  key: username

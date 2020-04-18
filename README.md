@@ -8,10 +8,12 @@ The following sources are supported:
 * GitHub Commits
 * GitHub Issues created
 * Discourse Posts
+* Mozilla Wiki edits
 
 ## Restrictions
 
 * Maximum of 1000 commits search results per month
+* Maximum of 50 wiki edits per month
 
 ## Setup
 
@@ -46,6 +48,8 @@ All configuration is supplied through environment variables:
 | GITHUB_STOP_DATE | Date in `YYYY-MM-DD format` which indicates the earliest possible contribution | No | 2010-01-01 |
 | REPS_ACTIVITY_PATH | Absolute path to the Reps Activities JSON file, see [reps-archive](https://github.com/mozilla/reps-archive) to see how to generate it (as long as the Portal is still up) | No | - |
 | REPS_USERNAME | Reps username to search for | No | - |
+| WIKI_USERNAME | Wiki username to search for | No | - |
+| WIKI_STOP_DATE | Date in `YYYY-MM-DD format` which indicates the earliest possible contribution | No | 2010-01-01 |
 
 ### Example for GITHUB_FILTER
 

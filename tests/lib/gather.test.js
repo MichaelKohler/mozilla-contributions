@@ -7,6 +7,7 @@ import discourse from '../../lib/discourse';
 import gather from '../../lib/gather';
 import github from '../../lib/github';
 import reps from '../../lib/reps';
+import wiki from '../../lib/wiki';
 
 test.beforeEach((t) => {
   t.context.sandbox = sinon.createSandbox();
@@ -14,6 +15,7 @@ test.beforeEach((t) => {
   t.context.sandbox.stub(reps, 'processActivities');
   t.context.sandbox.stub(github, 'gather');
   t.context.sandbox.stub(discourse, 'gather');
+  t.context.sandbox.stub(wiki, 'gather');
 });
 
 test.afterEach.always((t) => {
@@ -42,6 +44,7 @@ test.serial('FETCH - should start gathering', async (t) => {
   t.true(reps.processActivities.called);
   t.true(github.gather.called);
   t.true(discourse.gather.called);
+  t.true(wiki.gather.called);
 
   restore();
 });

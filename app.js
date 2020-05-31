@@ -19,9 +19,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', async (req, res) => {
   const storageInstance = StorageHandler.getInstance();
-  const contributions = await storageInstance.getContributions();
-
-  res.render('index', { contributions });
+  try {
+    const contributions = await storageInstance.getContributions();
+    res.render('index', { contributions });
+  } catch (error) {
+    res.send('Could not get contributions!');
+  }
 });
 
 app.use((req, res, next) => {

@@ -23,6 +23,7 @@ app.use('/', async (req, res) => {
     const contributions = await storageInstance.getContributions();
     res.render('index', { contributions });
   } catch (error) {
+    res.status(500);
     res.send('Could not get contributions!');
   }
 });

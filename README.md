@@ -39,7 +39,11 @@ All configuration is supplied through environment variables:
 
 | Environment Variable | Description | Required | Default |
 |---|---|---|---|
-| CONNECT | MySQL connection string | Yes | - |
+| DB_HOSTNAME | MySQL hostname | Yes | - |
+| DB_USERNAME | MySQL username | Yes | - |
+| DB_PASSWORD | MySQL password | Yes | - |
+| DB_DATABASE | MySQL database name | Yes | - |
+| DB_CONNECTIONS | Number of MySQL connections in the pool | Yes | - |
 | DISCOURSE_USERNAME | Discourse Username | No | - |
 | GITHUB_DELAY_MS | Delay between GitHub search requests in milliseconds - you might hit the rate limiting! | No | 2000 |
 | GITHUB_USERNAME | The GitHub username to search for | Yes | - |

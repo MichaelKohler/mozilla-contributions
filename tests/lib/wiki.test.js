@@ -9,7 +9,8 @@ import wiki from '../../lib/wiki';
 import storageHandler from '../../lib/storage-handler';
 
 const dateNow = new Date();
-const monthAgo = new Date(dateNow.getFullYear(), dateNow.getMonth() - 1, dateNow.getDate());
+const twoMonthsAgo = new Date(dateNow.getFullYear(), dateNow.getMonth() - 2, dateNow.getDate());
+const yesterday = new Date(dateNow.getFullYear(), dateNow.getMonth(), dateNow.getDate() - 1);
 const WIKI_EDITS_STRING = `
 <rss version="2.0">
   <channel>
@@ -42,7 +43,7 @@ const WIKI_EDITS_STRING = `
       <link>https://wiki.mozilla.org/index.php?title=Foo&amp;diff=455392</link>
       <guid isPermaLink="false">https://wiki.mozilla.org/index.php?title=Foo&amp;diff=455392</guid>
       <description>FooBarBaz</description>
-      <pubDate>${monthAgo.toISOString()}</pubDate>
+      <pubDate>${twoMonthsAgo.toISOString()}</pubDate>
       <dc:creator>Michaelkohler</dc:creator>
       <comments>https://wiki.mozilla.org/Talk:Contributors/Foo</comments>
     </item>
@@ -103,7 +104,7 @@ test.serial('should format', async (t) => {
 
 test.serial('should respect lower bound', async (t) => {
   t.context.storageInstance.getLatestBySource.resolves([{
-    createdAt: new Date('2020-04-14'), // one day after the first page fixture
+    createdAt: yesterday.toISOString(),
   }]);
 
   await wiki.gather();

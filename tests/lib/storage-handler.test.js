@@ -10,12 +10,12 @@ import StorageHandler from '../../lib/storage-handler';
 test.beforeEach((t) => {
   t.context.sandbox = sinon.createSandbox();
   t.context.mysqlConnection = {
-    connect: t.context.sandbox.stub().callsFake((cb) => cb()),
+    getConnection: t.context.sandbox.stub().callsFake((cb) => cb()),
     on: t.context.sandbox.stub().callsFake((event, cb) => cb(new Error('OH NO!'))),
     query: t.context.sandbox.stub().callsFake((query, entryOrCB, cb) => typeof entryOrCB === 'function' ? entryOrCB() : cb()),
   };
   t.context.storageInstance = StorageHandler.getInstance();
-  t.context.sandbox.stub(mysql, 'createConnection').returns(t.context.mysqlConnection);
+  t.context.sandbox.stub(mysql, 'createPool').returns(t.context.mysqlConnection);
 });
 
 test.afterEach.always((t) => {
@@ -33,18 +33,26 @@ test.serial('should return same instance if called again', (t) => {
 
 test.serial('should throw if no connect string', (t) => {
   const error = t.throws(() => t.context.storageInstance.connect());
-  t.is(error.message, 'NO_CONNECT_ENV_VARIABLE');
+  t.is(error.message, 'The following env variables are required: DB_HOSTNAME, DB_USERNAME, DB_PASSWORD, DB_DATABASE');
 });
 
 test.serial('should connect and create tables', async (t) => {
-  const connectString = 'mysql://foo';
   const restore = mockedEnv({
-    CONNECT: connectString,
+    DB_HOSTNAME: 'localhost',
+    DB_USERNAME: 'foo',
+    DB_PASSWORD: 'bar',
+    DB_DATABASE: 'contributions',
   });
 
   await t.context.storageInstance.connect();
-  t.true(mysql.createConnection.calledWith(connectString));
-  t.true(t.context.mysqlConnection.connect.calledOnce);
+  t.true(mysql.createPool.calledWith({
+    connectionLimit: 10,
+    host: 'localhost',
+    user: 'foo',
+    password: 'bar',
+    database: 'contributions',
+  }));
+  t.true(t.context.mysqlConnection.getConnection.calledOnce);
   t.true(t.context.mysqlConnection.on.calledOnce);
   t.true(t.context.mysqlConnection.query.calledOnce);
 
@@ -53,7 +61,7 @@ test.serial('should connect and create tables', async (t) => {
 
 test.serial('should not re-establish connection if done before by previous test', async (t) => {
   await t.context.storageInstance.connect();
-  t.false(mysql.createConnection.called);
+  t.false(mysql.createPool.called);
 });
 
 test.serial('should not throw when saving contributions', (t) => {

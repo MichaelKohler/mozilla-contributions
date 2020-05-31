@@ -48,11 +48,6 @@ spec:
                 secretKeyRef:
                   name: mozilla-contributions-fetch
                   key: fetch
-            - name: CONNECT
-              valueFrom:
-                secretKeyRef:
-                  name: mozilla-contributions-connect
-                  key: connect
             - name: GITHUB_TOKEN
               valueFrom:
                 secretKeyRef:
@@ -88,3 +83,28 @@ spec:
                 secretKeyRef:
                   name: mozilla-contributions-wiki
                   key: username
+            - name: DB_HOSTNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mozilla-contributions-db
+                  key: hostname
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mozilla-contributions-db
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mozilla-contributions-db
+                  key: password
+            - name: DB_DATABASE
+              valueFrom:
+                secretKeyRef:
+                  name: mozilla-contributions-db
+                  key: database
+            - name: DB_CONNECTIONS
+              valueFrom:
+                secretKeyRef:
+                  name: mozilla-contributions-db
+                  key: connections

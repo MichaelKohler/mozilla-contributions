@@ -8,9 +8,7 @@
     "stop": "docker-compose stop",
     "start:db": "docker-compose up -d",
     "eslint": "eslint .",
-    "test": "nyc ava",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "test": "nyc ava"
   },
   "dependencies": {
     "@octokit/rest": "^18.0.0",
@@ -23,7 +21,6 @@
     "mysql": "^2.18.1",
     "node-cron": "^2.0.3",
     "pug": "^3.0.0",
-    "snyk": "^1.360.0",
     "xml2js": "^0.4.23"
   },
   "devDependencies": {
@@ -66,6 +63,5 @@
         "tests/**/*.js"
       ]
     }
-  },
-  "snyk": true
+  }
 }

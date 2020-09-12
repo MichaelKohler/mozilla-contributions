@@ -68,6 +68,11 @@ spec:
                 secretKeyRef:
                   name: mozilla-contributions-github
                   key: stopdate
+            - name: COMMUNITY_PORTAL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mozilla-contributions-cp
+                  key: username
             - name: DISCOURSE_USERNAME
               valueFrom:
                 secretKeyRef:

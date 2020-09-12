@@ -39,6 +39,7 @@ All configuration is supplied through environment variables:
 
 | Environment Variable | Description | Required | Default |
 |---|---|---|---|
+| COMMUNITY_PORTAL_USERNAME | Community Portal Username | No | - |
 | DB_HOSTNAME | MySQL hostname | Yes | - |
 | DB_USERNAME | MySQL username | Yes | - |
 | DB_PASSWORD | MySQL password | Yes | - |
